@@ -34,8 +34,20 @@ const updateTask = async(req, res) => {
   }
 };
 
+const deleteTask = async (req, res) => {
+  try {
+    const id = req.body._id;
+    const todo = await tasksServices.deleteTask(id);
+    // console.log(todo);
+    return res.status(200).json(todo);
+  } catch (error) {
+    return error.message;
+  }
+};
+
 module.exports = {
   create,
   getAll,
   updateTask,
+  deleteTask,
 };

@@ -36,8 +36,22 @@ const updateTask = async (id, task) => {
   }
 };
 
+const deleteTask = async (id) => {
+  try {
+    const db = await connection();
+    const todo = await db.collection('toDoCollection').findOneAndDelete(
+      { _id: ObjectId(id) },
+    );
+    // console.log('MODEL', todo);
+    return todo;
+  } catch (error) {
+    return error.message;
+  }
+};
+
 module.exports = {
   create,
   getAll,
   updateTask,
+  deleteTask,
 }

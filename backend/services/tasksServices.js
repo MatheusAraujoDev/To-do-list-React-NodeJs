@@ -11,8 +11,8 @@ const getAll = async () => {
   return results;
 }
 
-const updateTask = async () => {
-  const todo = await tasksModel.updateTask();
+const updateTask = async (id, task) => {
+  const todo = await tasksModel.updateTask(id, task);
   return todo;
 };
 

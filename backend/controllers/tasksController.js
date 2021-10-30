@@ -12,7 +12,7 @@ const create = async (req, res) => {
   }
 };
 
-const getAll = async (req, res) => {
+const getAll = async (_req, res) => {
   try {
     const data = await tasksServices.getAll();
     return res.status(200).json(data);
@@ -23,8 +23,11 @@ const getAll = async (req, res) => {
 
 const updateTask = async(req, res) => {
   try {
-    const { id } = req.params;
-    const todo = await tasksServices.updateTask(id);
+    const id = req.body._id;
+    const { task } = req.body;
+    // console.log(task);
+    const todo = await tasksServices.updateTask(id, task);
+    // console.log(todo);
     return res.status(200).json(todo);
   } catch (error) {
     return error.message;

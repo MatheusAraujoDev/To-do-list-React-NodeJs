@@ -22,11 +22,15 @@ const getAll = async () => {
   }
 }
 
-const updateTask = async () => {
+const updateTask = async (id, task) => {
   try {
     const db = await connection();
-    const todo = db.collection('toDoCollection').updateOne({ _id: ObjectId(id) }, { $set: { task } });
-    return todo;
+    const todo = await db.collection('toDoCollection').findOneAndUpdate(
+      { _id: ObjectId(id) },
+      { $set: { task } }
+    );
+    // console.log(todo.value);
+    return todo.value;
   } catch (error) {
     return error.message;
   }

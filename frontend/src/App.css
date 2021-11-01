@@ -1,12 +1,36 @@
 h1 {
+  background-color:rgb(160, 153, 153);
   font-family: monospace;
   font-size: 35px;
-  text-align: center;
+  margin:0 auto;
+  text-align:center;
+  width: 60%;
+}
+main {
+  margin-top: 100px;
 }
 
 table {
   margin:0 auto;
   text-align:center;
+  width: 60%
+}
+
+th {
+  background-color:cornflowerblue;
+  padding: 20px;
+  width: 150px;
+}
+
+td {
+  background-color: rgb(228, 194, 153);
+}
+
+td button {
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  border-color:darkslategray;
 }
 
 .addTask {
@@ -16,7 +40,11 @@ table {
   justify-content: center;
 }
 
-#addButton {
-  border-radius: 8px;
+.addTask input {
+  width: 300px;
+}
+
+.addTask button {
+  border-radius: 5px;
   background-color:lime;
 }

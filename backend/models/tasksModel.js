@@ -27,9 +27,12 @@ const updateTask = async (id, task) => {
     const db = await connection();
     const todo = await db.collection('toDoCollection').findOneAndUpdate(
       { _id: ObjectId(id) },
-      { $set: { task } }
+      { $set: { task } },
+      { returnDocument: 'after' },
     );
-    // console.log(todo.value);
+    
+    // parâmetro returnDocument: after irá me retornar o novo objeto modificado. Referência:
+    // https://stackoverflow.com/questions/32811510/mongoose-findoneandupdate-doesnt-return-updated-document
     return todo.value;
   } catch (error) {
     return error.message;
@@ -43,7 +46,7 @@ const deleteTask = async (id) => {
       { _id: ObjectId(id) },
     );
     // console.log('MODEL', todo);
-    return todo;
+    return { message: `A tarefa '${todo.value.task}' foi deletada com sucesso`};
   } catch (error) {
     return error.message;
   }

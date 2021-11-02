@@ -34,7 +34,7 @@ td button {
 }
 
 .addTask {
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,4 +47,11 @@ td button {
 .addTask button {
   border-radius: 5px;
   background-color:lime;
+}
+
+.filter-buttons {
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center
 }

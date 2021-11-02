@@ -25,10 +25,11 @@ const updateTask = async(req, res) => {
   try {
     const id = req.body._id;
     const { task } = req.body;
-    // console.log(task);
+    // console.log('TASK', task);
     const todo = await tasksServices.updateTask(id, task);
-    // console.log(todo);
+    // res.status(200).json(todo)
     return res.status(200).json(todo);
+    
   } catch (error) {
     return error.message;
   }

@@ -24,8 +24,8 @@ function App() {
       setTask([...task,  response.data])
     })
 
-    document.getElementById("addInput").value = '';
-    setInput('');
+    document.getElementById("addInput").value = ''; // limpa o CAMPO input
+    setInput(''); // limpa o ESTADO input
   }
 
   const deleteTask = (_id) => {
@@ -66,12 +66,18 @@ function App() {
         </tbody>    
       </table>
 
-      <footer className="addTask">
+      <div className="filter-buttons">
+        <button onClick={getTasksFromDb}>Todas as tarefas</button>
+        <button>Apenas concluídas</button>
+        <button>Apenas pendentes</button>
+      </div>
+
+      <div className="addTask">
             <input id="addInput" onChange = {(event) => {
                 setInput(event.target.value);
               }} />
-            <button onClick = {createTask}>Adicionar Tarefa</button>
-      </footer>
+            <button id="AddButon" onClick = {createTask}>Adicionar Tarefa</button>
+      </div>    
     </main>
   );
 }

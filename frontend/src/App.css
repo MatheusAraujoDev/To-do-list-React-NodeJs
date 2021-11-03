@@ -6,8 +6,14 @@ h1 {
   text-align:center;
   width: 60%;
 }
+
 main {
   margin-top: 100px;
+}
+
+.center {
+  margin: 0 auto;
+  text-align:center;
 }
 
 table {
@@ -18,7 +24,7 @@ table {
 
 th {
   background-color:cornflowerblue;
-  padding: 20px;
+  padding: 10px;
   width: 150px;
 }
 
@@ -26,12 +32,12 @@ td {
   background-color: rgb(228, 194, 153);
 }
 
-td button {
+/* td button {
   color: white;
   background-color: red;
   border-radius: 50%;
   border-color:darkslategray;
-}
+} */
 
 .addTask {
   margin-top: 20px;
@@ -54,4 +60,8 @@ td button {
   display: flex;
   align-items: center;
   justify-content: center
+}
+
+.markItem {
+  text-decoration: line-through;
 }

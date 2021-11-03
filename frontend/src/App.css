@@ -1,3 +1,7 @@
+body {
+  background-color:saddlebrown;
+}
+
 h1 {
   background: rgb(15,9,121);
   background: linear-gradient(90deg, rgba(15,9,121,1) 13%, rgba(3,146,211,1) 68%, rgba(0,231,255,1) 92%);
@@ -70,11 +74,14 @@ input {
 }
 
 #filterBtn {
+  background-color:cornflowerblue;
   border-radius: 5px;
   border: 1px solid black;
   font-size: 14px;
-  padding: 5px;
-  margin-right: 5px;
+  font-weight: bold;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  padding: 6px;
+  margin-right: 15px;
 }
 
 #deleteBtn {

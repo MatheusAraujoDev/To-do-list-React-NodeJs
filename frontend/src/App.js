@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -9,9 +8,8 @@ function App() {
   const [taskDone, setTaskDone] = useState([]);
 
   function editInput(newTaskName) {
-    // eslint-disable-next-line no-alert
     return prompt('Edite sua tarefa e clique em "OK":', newTaskName);
-    // newTaskName será o novo valor de item.task vindo do mongoDB pelo _id.
+    // newTaskName é o novo valor de item.task vindo do mongoDB pelo _id.
     // Referência: https://www.w3schools.com/jsref/met_win_prompt.asp
   }
 
@@ -25,7 +23,6 @@ function App() {
         });
       }
     });
-
     setTask([...concludedTasks]);
   }
 
@@ -39,7 +36,7 @@ function App() {
   const updateTask = (_id, taskName) => {
     axios.put('http://localhost:3001/update', {
       _id,
-      taskName,
+      task: taskName,
     }).then(() => {
       getTasksFromDb(); // Irá atualizar a página com a nova tarefa
     });

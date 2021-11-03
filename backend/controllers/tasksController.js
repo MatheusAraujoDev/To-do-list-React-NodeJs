@@ -21,7 +21,7 @@ const getAll = async (_req, res) => {
   }
 };
 
-const updateTask = async(req, res) => {
+const updateTask = async (req, res) => {
   try {
     const id = req.body._id;
     const { task } = req.body;
@@ -29,7 +29,6 @@ const updateTask = async(req, res) => {
     const todo = await tasksServices.updateTask(id, task);
     // res.status(200).json(todo)
     return res.status(200).json(todo);
-    
   } catch (error) {
     return error.message;
   }

@@ -9,7 +9,7 @@ const create = async (task) => {
 const getAll = async () => {
   const results = await tasksModel.getAll();
   return results;
-}
+};
 
 const updateTask = async (id, task) => {
   const todo = await tasksModel.updateTask(id, task);
@@ -26,4 +26,4 @@ module.exports = {
   getAll,
   updateTask,
   deleteTask,
-}
+};

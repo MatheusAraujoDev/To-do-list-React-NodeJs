@@ -20,7 +20,7 @@ const getAll = async () => {
   } catch (error) {
     return error.message;
   }
-}
+};
 
 const updateTask = async (id, task) => {
   try {
@@ -46,7 +46,7 @@ const deleteTask = async (id) => {
       { _id: ObjectId(id) },
     );
     // console.log('MODEL', todo);
-    return { message: `A tarefa '${todo.value.task}' foi deletada com sucesso`};
+    return { message: `A tarefa: '${todo.value.task}' foi deletada com sucesso` };
   } catch (error) {
     return error.message;
   }
@@ -57,4 +57,4 @@ module.exports = {
   getAll,
   updateTask,
   deleteTask,
-}
+};

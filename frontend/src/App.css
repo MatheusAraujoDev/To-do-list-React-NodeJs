@@ -1,10 +1,14 @@
 h1 {
-  background-color:rgb(160, 153, 153);
+  background: rgb(15,9,121);
+  background: linear-gradient(90deg, rgba(15,9,121,1) 13%, rgba(3,146,211,1) 68%, rgba(0,231,255,1) 92%);
+  color: Black;
+  font-style: italic;
   font-family: monospace;
   font-size: 35px;
-  margin:0 auto;
+  margin: auto;
   text-align:center;
   width: 60%;
+  padding: 3px;
 }
 
 main {
@@ -32,13 +36,6 @@ td {
   background-color: rgb(228, 194, 153);
 }
 
-/* td button {
-  color: white;
-  background-color: red;
-  border-radius: 50%;
-  border-color:darkslategray;
-} */
-
 .addTask {
   margin-top: 20px;
   display: flex;
@@ -53,6 +50,8 @@ td {
 .addTask button {
   border-radius: 5px;
   background-color:lime;
+  font-size: 14px;
+  padding: 5px;
 }
 
 .filter-buttons {
@@ -64,4 +63,24 @@ td {
 
 .markItem {
   text-decoration: line-through;
+}
+
+input {
+  border: 2px solid black;
+}
+
+#filterBtn {
+  border-radius: 5px;
+  border: 1px solid black;
+  font-size: 14px;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+#deleteBtn {
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  border-color:darkslategray;
+  margin-left: 5px;
 }

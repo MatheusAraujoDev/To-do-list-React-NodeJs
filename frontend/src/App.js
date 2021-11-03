@@ -3,27 +3,23 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-
   const [input, setInput] = useState('');
   const [task, setTask] = useState([]);
-  // const [taskFullTable, setTaskFullTable] = useState([]);
   const [taskDone, setTaskDone] = useState([]);
 
   useEffect(()=>{
     getTasksFromDb()
   },[]);
 
-  function editInput(taskNameEdit) {
-    return prompt("Edite sua tarefa:", taskNameEdit)
+  function editInput(newTaskName) {
+    return prompt('Edite sua tarefa e clique em "OK":', newTaskName)
+    // newTaskName será o novo valor de item.task vindo do mongoDB pelo _id.
+    // Referência: https://www.w3schools.com/jsref/met_win_prompt.asp
   }
-
-  // function allTasks() {
-  //   setTask(taskFullTable);
-  // }
 
   function onlyConcludedTasks() {
       let concludedTasks = []
-      task.forEach((item, index) => {
+      task.forEach((item) => {
       if(taskDone.includes(item._id)) {
         concludedTasks.push({
           _id: item._id,
@@ -35,24 +31,10 @@ function App() {
     setTask([...concludedTasks]);
   }
 
-//   function onlyNotConcludedTasks() {
-//     let notConcludedTasks = []
-//     task.forEach((item, index) => {
-//     if(!taskDone.includes(item._id)) {
-//       notConcludedTasks.push({
-//         _id: item._id,
-//         task: item.task
-//       })
-//     }
-//   })
-//   setTask(notConcludedTasks);
-// }
-
   const getTasksFromDb = () => {    
     axios.get('http://localhost:3001/list')
     .then(function (response) {
       setTask(response.data);
-      // setTaskFullTable(response.data)
     })
   }
 
@@ -60,9 +42,8 @@ function App() {
     axios.put('http://localhost:3001/update', {
       _id: _id,
        task: task,
-    }).then(function (response) {
-      getTasksFromDb();
-      console.log(response)
+    }).then(function () {
+      getTasksFromDb(); // Irá atualizar a página com a nova tarefa
     }) 
   }
 
@@ -108,19 +89,17 @@ function App() {
 
   return (    
     <main>
-      <h1>To Do List</h1>    
+      <h1>To Do List</h1>
 
       <table>
         <thead>
           <tr> 
             <th>Status</th>
             <th>Nome da Tarefa</th>
-            <th>Opcões</th>
+            <th>Opções</th>
           </tr>
-        </thead>
-     
+        </thead>     
         <tbody>
-
           {task.map((item) => {
             return (
              <tr key={item._id} >
@@ -134,15 +113,20 @@ function App() {
               <td>
                 <h2 id={item._id} >{item.task}</h2></td>
               <td>
-                <button onClick={() => {
-                  const task = editInput(item.task);
+                <button
+                  onClick={() => {
+                  const task = editInput(item.task); // fica o valor da nova tarefa
                   updateTask(item._id, task)
-                }}> 
+                  }}
+                > 
                   Editar
                 </button>
-                <button onClick={() => {
+                <button
+                  id="deleteBtn"
+                  onClick={() => {
                   deleteTask(item._id)
-                }}>X</button>
+                  }}
+                >X</button>
               </td>
             </tr> 
             )
@@ -151,19 +135,16 @@ function App() {
       </table>
     
       <div className="filter-buttons">
-        <button onClick={getTasksFromDb}>Tarefas pendentes</button>
-        <button onClick={onlyConcludedTasks}>Apenas concluídas</button>
-        {/* <button onClick={() => {
-          onlyNotConcludedTasks();
-        }}>Apenas pendentes</button> */}
+        <button id ="filterBtn" onClick={getTasksFromDb}>Todas as Tarefas</button>
+        <button id ="filterBtn" onClick={onlyConcludedTasks}>Apenas concluídas</button>
       </div>
 
-      <div className="addTask">
-            <input id="addInput" onChange={(event) => {
-                setInput(event.target.value);
-              }} />
-            <button id="AddButon" onClick={createTask}>Adicionar Tarefa</button>
-      </div>    
+      <label htmlFor="addInput" className="addTask">
+        <input type="text" name="addInput" id="addInput" onChange={(event) => {
+          setInput(event.target.value);
+          }} />
+        <button id="AddButon" onClick={createTask}>Adicionar Tarefa</button>
+      </label>    
     </main>    
   );
 }

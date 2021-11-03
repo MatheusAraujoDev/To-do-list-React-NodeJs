@@ -1,0 +1,7 @@
+{
+  "extends": "trybe-frontend",
+  "rules": {
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "no-alert": 0
+  }
+}

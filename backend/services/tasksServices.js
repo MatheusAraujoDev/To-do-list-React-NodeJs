@@ -2,7 +2,6 @@ const tasksModel = require('../models/tasksModel');
 
 const create = async (task) => {
   const add = await tasksModel.create(task);
-  // console.log('service', add);
   return add;
 };
 
@@ -21,9 +20,21 @@ const deleteTask = async (id) => {
   return todo;
 };
 
+const tasksDone = async () => {
+  const data = await tasksModel.tasksDone();
+  return data;
+};
+
+const tasksNotDone = async () => {
+  const data = await tasksModel.tasksNotDone();
+  return data;
+};
+
 module.exports = {
   create,
   getAll,
   updateTask,
   deleteTask,
+  tasksDone,
+  tasksNotDone,
 };

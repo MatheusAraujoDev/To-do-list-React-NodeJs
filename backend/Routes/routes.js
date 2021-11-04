@@ -9,8 +9,8 @@ router.put('/update', tasksController.updateTask);
 
 router.delete('/delete', tasksController.deleteTask);
 
-router.get('/getOnlyConcludeds', tasksController.onlyConcluded);
+router.get('/tasksDone', tasksController.tasksDone);
 
-router.get('/getNotConcludeds', tasksController.onlyNotConcluded);
+router.get('/tasksNotDone', tasksController.tasksNotDone);
 
 module.exports = router;

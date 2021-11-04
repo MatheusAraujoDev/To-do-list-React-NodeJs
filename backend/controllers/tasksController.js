@@ -40,20 +40,20 @@ const deleteTask = async (req, res) => {
   }
 };
 
-const onlyConcluded = async (_req, res) => {
+const tasksDone = async (_req, res) => {
   try {
-    const tasks = await tasksServices.getAll();
+    const tasks = await tasksServices.tasksDone();
     const data = [];
     tasks.forEach((task) => task.check && data.push(task)); // se check for true, coloque no array de concluídas
-  return res.json(data);
+    return res.json(data);
   } catch (error) {
     return error.message;
   }
 };
 
-const onlyNotConcluded = async (_req, res) => {
+const tasksNotDone = async (_req, res) => {
   try {
-    const tasks = await tasksServices.getAll();
+    const tasks = await tasksServices.tasksNotDone();
     const data = [];
     tasks.forEach((task) => !task.check && data.push(task));
     return res.json(data);    
@@ -67,6 +67,6 @@ module.exports = {
   getAll,
   updateTask,
   deleteTask,
-  onlyConcluded,
-  onlyNotConcluded,
+  tasksDone,
+  tasksNotDone,
 };

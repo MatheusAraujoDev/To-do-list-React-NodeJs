@@ -15,14 +15,14 @@ function App() {
   }
 
   function onlyConcludedTasks() {
-    axios.get('http://localhost:3001/getOnlyConcludeds')
+    axios.get('http://localhost:3001/tasksDone')
       .then((response) => {
         setTask(response.data);
       });
   }
 
   function onlyNotConcludedTasks() {
-    axios.get('http://localhost:3001/getNotConcludeds')
+    axios.get('http://localhost:3001/tasksNotDone')
       .then((response) => {
         setTask(response.data);
       });
@@ -69,10 +69,11 @@ function App() {
   };
 
   const markTask = (_id, taskName) => {
-    const element = document.getElementById(`${_id}`);
+    const h2 = document.getElementById(`${_id}`);
     const check = document.getElementById(`checkbox${_id}`).checked;
-    updateTask(_id, taskName, check);
-    return element.classList.toggle('markItem');
+
+    updateTask(_id, taskName, check); // atualiza o valor de check e risca o item
+    return h2.classList.toggle('markItem');
   };
 
   useEffect(() => {
@@ -85,7 +86,7 @@ function App() {
 
       <table>
         <thead>
-          <tr>
+          <tr data-testid="table-row">
             <th>Status</th>
             <th>Nome da Tarefa</th>
             <th>Opções</th>
@@ -98,7 +99,7 @@ function App() {
                 <input
                   type="checkbox"
                   id={ `checkbox${item._id}` }
-                  onClick={ () => { markTask(item._id, item.task); } }
+                  onChange={ () => { markTask(item._id, item.task); } }
                   checked={ item.check }
                 />
 

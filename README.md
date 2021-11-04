@@ -29,7 +29,21 @@ Trata-se de uma aplicação FullStack, com o FrontEnd desenvolvido em [React](ht
 
 ## 2- Configurar o BackEnd
 - Abra um novo terminal e navegue até a pasta do backend. Feito isso realize o comando `npm install` dentro dela (necessário apenas uma vez).
-- Com as dependências instaladas para o backend, precisamos iniciá-lo para que o projeto funcione. Para isso realize o comando `npm run dev`.
+- Com as dependências instaladas para o backend, precisamos iniciá-lo para que o projeto funcione. Para isso realize o comando `npm run dev`. Seu terminal deve ficar aberto, e deve ficar dessa forma:
 
-Obs: O backEnd executará na porta 3001.
+![image](https://user-images.githubusercontent.com/80549950/140334739-466ad723-0fba-4633-a390-1539d017063d.png)
+
+
+Obs: O backend executará na porta 3001.
+
+## 3- Configurar o FrontEnd
+- Por fim, deve-se configurar a parte frontend da aplicação. para isso abra um novo terminal(lembrando que até o momento você terá 2 terminais abertos, um para o mongoDb e outro para o servidor do backend).
+- Navegue até a pasta "frontend" e realize o comando `npm install`. Deve ser realizado somente uma vez.
+- Feito isso você deverá iniciar a aplicação no frontend e manter o terminal aberto. Para isso realize o comando `npm start`. Seu terminal deve ficar parecido com isso: 
+
+![image](https://user-images.githubusercontent.com/80549950/140335986-33c396b6-ee51-426c-a672-2134bc67afaf.png)
+
+Obs: O frontend executará na porta 3000.
+
+
 

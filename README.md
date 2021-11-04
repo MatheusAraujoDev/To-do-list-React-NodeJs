@@ -45,5 +45,19 @@ Obs: O backend executará na porta 3001.
 
 Obs: O frontend executará na porta 3000.
 
+---
+# Linter do projeto
+Neste projeto foi configurado o [ESLint](https://eslint.org/), para uma boa legibilidade do código e atendimento a boas práticas de Desenvolvimento.
+
+---
+# Execução dos Testes
+
+## 1- FrontEnd
+Para realizar os testes do FrontEnd basta navegar até a pasta frontend e executar o comando `npm test` ou `npm run test`. Dessa forma os testes serão realizados.
+
+![image](https://user-images.githubusercontent.com/80549950/140337606-48ff695d-fed2-476f-a672-9e6b5106218f.png)
+
+## 2- BackEnd
+Para realizar os testes do backend basta navegar até a pasta do backend e executar o comando `npm test` ou `npm run test`. Dessa forma os testes serão realizados.
 
 

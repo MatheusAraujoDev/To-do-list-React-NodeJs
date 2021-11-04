@@ -5,25 +5,27 @@ import axios from 'axios';
 function App() {
   const [input, setInput] = useState('');
   const [task, setTask] = useState([]);
-  const [taskDone, setTaskDone] = useState([]);
 
-  function editInput(newTaskName) {
-    return prompt('Edite sua tarefa e clique em "OK":', newTaskName);
-    // newTaskName é o novo valor de item.task vindo do mongoDB pelo _id.
+  function editInput(taskName) {
+    const newValue = prompt('Edite sua tarefa e clique em "OK":', taskName);
+    return (newValue === null || newValue === '') ? taskName : newValue;
+
+    // taskName é o novo valor de item.task vindo do mongoDB pelo _id.
     // Referência: https://www.w3schools.com/jsref/met_win_prompt.asp
   }
 
   function onlyConcludedTasks() {
-    const concludedTasks = [];
-    task.forEach((item) => {
-      if (taskDone.includes(item._id)) {
-        concludedTasks.push({
-          _id: item._id,
-          task: item.task,
-        });
-      }
-    });
-    setTask([...concludedTasks]);
+    axios.get('http://localhost:3001/getOnlyConcludeds')
+      .then((response) => {
+        setTask(response.data);
+      });
+  }
+
+  function onlyNotConcludedTasks() {
+    axios.get('http://localhost:3001/getNotConcludeds')
+      .then((response) => {
+        setTask(response.data);
+      });
   }
 
   const getTasksFromDb = () => {
@@ -33,10 +35,11 @@ function App() {
       });
   };
 
-  const updateTask = (_id, taskName) => {
+  const updateTask = (_id, taskName, check) => {
     axios.put('http://localhost:3001/update', {
       _id,
       task: taskName,
+      check,
     }).then(() => {
       getTasksFromDb(); // Irá atualizar a página com a nova tarefa
     });
@@ -45,6 +48,7 @@ function App() {
   const createTask = () => {
     axios.post('http://localhost:3001/create', {
       task: input,
+      check: false,
     })
       .then((response) => {
         setTask([...task, response.data]);
@@ -64,19 +68,10 @@ function App() {
     });
   };
 
-  const markTask = (id) => {
-    const element = document.getElementById(`${id}`);
-    const isChecked = document.getElementById(`checkbox${id}`).checked;
-
-    if (isChecked) {
-      setTaskDone([...taskDone, id]); // adiciona ao state o id da tarefa concluída
-    } else {
-      const findTaskIndex = taskDone.findIndex((item) => item === id);
-      const array = taskDone;
-      array.splice(findTaskIndex, 1);
-      setTaskDone([...array]);
-    }
-
+  const markTask = (_id, taskName) => {
+    const element = document.getElementById(`${_id}`);
+    const check = document.getElementById(`checkbox${_id}`).checked;
+    updateTask(_id, taskName, check);
     return element.classList.toggle('markItem');
   };
 
@@ -103,18 +98,25 @@ function App() {
                 <input
                   type="checkbox"
                   id={ `checkbox${item._id}` }
-                  onClick={ () => { markTask(item._id); } }
+                  onClick={ () => { markTask(item._id, item.task); } }
+                  checked={ item.check }
                 />
+
               </td>
               <td>
-                <h2 id={ item._id }>{item.task}</h2>
+                <h2
+                  id={ item._id }
+                  className={ item.check && 'markItem' }
+                >
+                  {item.task}
+                </h2>
               </td>
               <td>
                 <button
                   type="button"
                   onClick={ () => {
                     const taskNewValue = editInput(item.task); // fica o valor da nova tarefa
-                    updateTask(item._id, taskNewValue);
+                    updateTask(item._id, taskNewValue, item.check);
                   } }
                 >
                   Editar
@@ -148,6 +150,13 @@ function App() {
           onClick={ onlyConcludedTasks }
         >
           Apenas concluídas
+        </button>
+        <button
+          type="button"
+          id="filterBtn"
+          onClick={ onlyNotConcludedTasks }
+        >
+          Tarefas Pendentes
         </button>
       </div>
 

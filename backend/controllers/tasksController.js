@@ -3,9 +3,7 @@ const tasksServices = require('../services/tasksServices');
 const create = async (req, res) => {
   try {
     const task = req.body;
-    // console.log('controller', task);
     const result = await tasksServices.create(task);
-    // console.log('controller', result);
     return res.status(200).json(result);    
   } catch (error) {
     return res.status(400).json(error.message);
@@ -24,10 +22,8 @@ const getAll = async (_req, res) => {
 const updateTask = async (req, res) => {
   try {
     const id = req.body._id;
-    const { task } = req.body;
-    // console.log('TASK', task);
-    const todo = await tasksServices.updateTask(id, task);
-    // res.status(200).json(todo)
+    const { task, check } = req.body;
+    const todo = await tasksServices.updateTask(id, task, check);
     return res.status(200).json(todo);
   } catch (error) {
     return error.message;
@@ -38,8 +34,29 @@ const deleteTask = async (req, res) => {
   try {
     const id = req.body._id;
     const todo = await tasksServices.deleteTask(id);
-    // console.log(todo);
     return res.status(200).json(todo);
+  } catch (error) {
+    return error.message;
+  }
+};
+
+const onlyConcluded = async (_req, res) => {
+  try {
+    const tasks = await tasksServices.getAll();
+    const data = [];
+    tasks.forEach((task) => task.check && data.push(task)); // se check for true, coloque no array de concluídas
+  return res.json(data);
+  } catch (error) {
+    return error.message;
+  }
+};
+
+const onlyNotConcluded = async (_req, res) => {
+  try {
+    const tasks = await tasksServices.getAll();
+    const data = [];
+    tasks.forEach((task) => !task.check && data.push(task));
+    return res.json(data);    
   } catch (error) {
     return error.message;
   }
@@ -50,4 +67,6 @@ module.exports = {
   getAll,
   updateTask,
   deleteTask,
+  onlyConcluded,
+  onlyNotConcluded,
 };

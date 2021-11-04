@@ -6,7 +6,7 @@ const create = async (task) => {
     const db = await connection();
     const add = await db.collection('toDoCollection').insertOne(task);
     // console.log('Model', task.task);
-    return { _id: add.insertedId, task: task.task };
+    return { _id: add.insertedId, task: task.task, check: task.check };
   } catch (error) {
     return { message: 'Erro ao conectar com o banco de dados!' };
   }
@@ -22,12 +22,12 @@ const getAll = async () => {
   }
 };
 
-const updateTask = async (id, task) => {
+const updateTask = async (id, task, check) => {
   try {
     const db = await connection();
     const todo = await db.collection('toDoCollection').findOneAndUpdate(
       { _id: ObjectId(id) },
-      { $set: { task } },
+      { $set: { task, check } },
       { returnDocument: 'after' },
     );
     

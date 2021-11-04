@@ -53,8 +53,8 @@ const deleteTask = async (id) => {
 const tasksDone = async () => {
   try {
     const db = await connection();
-    const content = db.collection('toDoCollection').find().toArray();
-    return content;
+    const result = db.collection('toDoCollection').find().toArray();
+    return result;
   } catch (error) {
     return error.message;
   }
@@ -63,8 +63,8 @@ const tasksDone = async () => {
 const tasksNotDone = async () => {
   try {
     const db = await connection();
-    const content = db.collection('toDoCollection').find().toArray();
-    return content;
+    const res = db.collection('toDoCollection').find().toArray();
+    return res;
   } catch (error) {
     return error.message;
   }

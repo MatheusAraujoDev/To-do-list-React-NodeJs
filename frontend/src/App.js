@@ -10,7 +10,7 @@ function App() {
     const newValue = prompt('Edite sua tarefa e clique em "OK":', taskName);
     return (newValue === null || newValue === '') ? taskName : newValue;
 
-    // taskName é o novo valor de item.task vindo do mongoDB pelo _id.
+    // newValue é o novo valor de item.task vindo do mongoDB pelo _id.
     // Referência: https://www.w3schools.com/jsref/met_win_prompt.asp
   }
 
@@ -41,7 +41,7 @@ function App() {
       task: taskName,
       check,
     }).then(() => {
-      getTasksFromDb(); // Irá atualizar a página com a nova tarefa
+      getTasksFromDb(); // Atualiza a página com a nova tarefa
     });
   };
 
@@ -54,8 +54,8 @@ function App() {
         setTask([...task, response.data]);
       });
 
-    document.getElementById('addInput').value = ''; // limpa o CAMPO input
-    setInput(''); // limpa o ESTADO input
+    document.getElementById('addInput').value = ''; // limpa o INPUT
+    setInput(''); // limpa o ESTADO
   };
 
   const deleteTask = (_id) => {

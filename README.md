@@ -17,6 +17,11 @@ Trata-se de uma aplicação FullStack, com o FrontEnd desenvolvido em [React](ht
  - Assim como referências na documentação das ferramentas e no conteúdo do curso da [Trybe](https://www.betrybe.com/)
 
 ---
+# Clone o projeto para a sua máquina
+- Para fazer isso, basta abrir o seu terminal e digitar o comando `git clone https://github.com/MatheusAraujoDev/To-do-list-React-NodeJs.git`
+- Feito isso, utilize o comando `cd To-do-list-React-NodeJs` para entrar na pasta do repositório que você acabou de clonar.
+
+---
 # Instruções para executar o projeto
 
 ## 1- Configurar o MongoDb

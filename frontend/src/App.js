@@ -163,6 +163,7 @@ function App() {
 
       <label htmlFor="addInput" className="addTask">
         <input
+          data-testid="addTask-Input"
           type="text"
           name="addInput"
           id="addInput"
@@ -171,6 +172,7 @@ function App() {
           } }
         />
         <button
+          data-testid="addTask-Button"
           type="button"
           id="AddButon"
           onClick={ createTask }

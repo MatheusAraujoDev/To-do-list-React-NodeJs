@@ -36,8 +36,8 @@ describe('Testa a rota DELETE "/delete" para deletar uma Tarefa', () => {
       response = await chai.request(app).delete(`/delete/${VALID_ID_2}`);
     });
 
-    it('deve retornar um status 200', () => {
-      expect(response).to.have.status(200);
+    it('após deletar deve retornar um status 404', () => {
+      expect(response).to.have.status(404);
     });
 
     it('deve retornar um objeto vazio', () => {

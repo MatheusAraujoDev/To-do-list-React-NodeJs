@@ -7,7 +7,7 @@ router.get('/list', tasksController.getAll);
 
 router.put('/update', tasksController.updateTask);
 
-router.delete('/delete/:id', tasksController.deleteTask);
+router.delete('/delete', tasksController.deleteTask);
 
 router.get('/tasksDone', tasksController.tasksDone);
 

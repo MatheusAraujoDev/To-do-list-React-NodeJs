@@ -8,7 +8,6 @@ const { MongoClient } = require('mongodb');
 
 chai.use(chaiHttp);
 
-
 describe('Testa a Rota POST "/create" para criar uma Tarefa', function () {
   let connectionMock;
 

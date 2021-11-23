@@ -13,3 +13,5 @@ app.use(bodyParser.json());
 app.use('/', Routes);
 
 app.listen(port, () => console.log(`Servidor Online na porta ${port}!`));
+
+module.exports = app;

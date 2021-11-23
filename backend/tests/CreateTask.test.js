@@ -1,46 +1,58 @@
+const chaiHttp = require('chai-http');
+const chai = require('chai');
+const { expect } = chai;
 const sinon = require('sinon');
-const { expect } = require('chai');
+const app = require('../index');
+const connection = require('./connectionMock');
 const { MongoClient } = require('mongodb');
-const { MongoMemoryServer } = require('mongodb-memory-server');
 
-const taskModel = require('../models/tasksModel');
+chai.use(chaiHttp);
 
 
-describe('Testa a Rota de Criar uma Tarefa', () => {
+describe('Testa a Rota POST "/create" para criar uma Tarefa', function () {
+  let connectionMock;
 
-  const payload = {
-    _id: "618584b39ee41007f42ccc73",
-    task: "Tarefa 1",
-    check: false,
-  }
-
-  const DBServer = new MongoMemoryServer();
   before(async () => {
-    const MONGO_URL_MOCK = await DBServer.getUri();
-    const connectionMock = await MongoClient
-      .connect(MONGO_URL_MOCK, { 
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-      });
-
+    connectionMock = await connection();
     sinon.stub(MongoClient, 'connect').resolves(connectionMock);
   });
-  
+
   after(async () => {
     MongoClient.connect.restore();
-    await DBServer.stop();
   });
 
+  describe('Quando não passamos um body', () => {
+    let response;
 
-  describe('Quando é inserida com sucesso', () => {
-    it('Retorna um objeto', async () => {
-      const response = await taskModel.create(payload);
-      expect(response).to.be.an('object');
+    before(async () => {
+      response = await chai.request(app).post('/create');
     });
-    it('Tem o status code 200', async () => {});
-    it('O objeto possui as propriedades _id, task, check', async () => {
-      // const response = await taskModel.create(payload);
-      // expect(response.body).to.have.all.keys('_id', 'task', 'check');
+
+    it('Deve retornar um objeto vazio', () => {
+      expect(response.body).to.be.an('object');
     });
   });
+
+  describe('Quando é inserida uma tarefa com sucesso', function () {
+    let response;
+
+    before(async function () {
+      response = await chai.request(app).post('/create')
+        .send({ task: 'Estudar JavaScript', check: false });
+    });
+
+    it('deve retornar status 200', function() {
+      expect(response).to.have.status(200);
+    });
+
+    it('deve retornar um objeto com a nova tarefa cadastrada', function () {
+      expect(response.body).to.be.an('object');
+    });
+
+    it('o objeto retornado deve ter as chaves "_id", "task" e "check"', function () {
+      expect(response.body).to.have.all.keys('_id', 'task', 'check');
+    });
+
+  });
+
 });

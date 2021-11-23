@@ -55,14 +55,16 @@ Obs: O frontend executará na porta 3000.
 Neste projeto foi configurado o [ESLint](https://eslint.org/), para uma boa legibilidade do código e atendimento a boas práticas de Desenvolvimento.
 
 ---
-# Execução dos Testes (ainda estão em desenvolvimento)
+# Execução dos Testes
 
-## 1- FrontEnd
+## 1- FrontEnd (ainda estão em desenvolvimento)
 Para realizar os testes do FrontEnd basta navegar até a pasta frontend e executar o comando `npm test` ou `npm run test`. Dessa forma os testes serão realizados.
 
 ![image](https://user-images.githubusercontent.com/80549950/140337606-48ff695d-fed2-476f-a672-9e6b5106218f.png)
 
 ## 2- BackEnd
 Para realizar os testes do backend basta navegar até a pasta do backend e executar o comando `npm test` ou `npm run test`. Dessa forma os testes serão realizados.
+
+![image](https://user-images.githubusercontent.com/80549950/143078331-9c0ba2cd-c3c0-4345-80c4-4dc15231ed93.png)
 
 

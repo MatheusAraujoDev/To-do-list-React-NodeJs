@@ -1,6 +1,6 @@
 # Olá, seja Bem-Vindo(a) a minha Lista de tarefas feita em React e NodeJS.
 ---
-![image](https://user-images.githubusercontent.com/80549950/140323257-a5ec4c4f-9354-4e76-83c1-d43ff542c674.png)
+![image](https://user-images.githubusercontent.com/80549950/152887303-b49f1858-6538-48d6-8320-cbd298c03004.png)
 
 ---
 # Descrição

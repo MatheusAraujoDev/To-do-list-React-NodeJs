@@ -9,7 +9,7 @@ const OPTIONS = {
 
 const connection = async () => {
   const URLMock = await DBServer.getUri();
-  return MongoClient.connect(URLMock, OPTIONS)
+  return MongoClient.connect(URLMock, OPTIONS);
 };
 
 module.exports = connection; 

@@ -1,10 +1,10 @@
 body {
-  background-color:saddlebrown;
+  background-color:#4E6766;
 }
 
 h1 {
   background: rgb(15,9,121);
-  background: linear-gradient(90deg, rgba(15,9,121,1) 13%, rgba(3,146,211,1) 68%, rgba(0,231,255,1) 92%);
+  background: linear-gradient(90deg, rgb(57, 50, 184) 13%, rgba(3,146,211,1) 68%, rgba(0,231,255,1) 92%);
   color: Black;
   font-style: italic;
   font-family: monospace;
@@ -49,13 +49,7 @@ td {
 
 .addTask input {
   width: 300px;
-}
-
-.addTask button {
-  border-radius: 5px;
-  background-color:lime;
-  font-size: 14px;
-  padding: 5px;
+  margin-right: 3px;
 }
 
 .filter-buttons {
@@ -82,12 +76,4 @@ input {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   padding: 6px;
   margin-right: 15px;
-}
-
-#deleteBtn {
-  color: white;
-  background-color: red;
-  border-radius: 50%;
-  border-color:darkslategray;
-  margin-left: 5px;
 }

@@ -1,6 +1,10 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import EditButton from './components/EditButton';
+import DeleteTaskButton from './components/DeleteTaskButton';
+import AddTask from './components/AddTask';
+import FilterButtons from './components/FilterButtons';
 
 function App() {
   const [input, setInput] = useState('');
@@ -14,19 +18,19 @@ function App() {
     // Referência: https://www.w3schools.com/jsref/met_win_prompt.asp
   }
 
-  function onlyConcludedTasks() {
+  const onlyConcludedTasks = () => {
     axios.get('http://localhost:3001/tasksDone')
       .then((response) => {
         setTask(response.data);
       });
-  }
+  };
 
-  function onlyNotConcludedTasks() {
+  const onlyNotConcludedTasks = () => {
     axios.get('http://localhost:3001/tasksNotDone')
       .then((response) => {
         setTask(response.data);
       });
-  }
+  };
 
   const getTasksFromDb = () => {
     axios.get('http://localhost:3001/list')
@@ -113,73 +117,35 @@ function App() {
                 </h2>
               </td>
               <td>
-                <button
-                  type="button"
+                <EditButton
                   onClick={ () => {
                     const taskNewValue = editInput(item.task); // fica o valor da nova tarefa
                     updateTask(item._id, taskNewValue, item.check);
                   } }
-                >
-                  Editar
-                </button>
-                <button
-                  type="button"
-                  id="deleteBtn"
+                />
+
+                <DeleteTaskButton
                   onClick={ () => {
                     deleteTask(item._id);
                   } }
-                >
-                  X
-                </button>
+                />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      <div className="filter-buttons">
-        <button
-          type="button"
-          id="filterBtn"
-          onClick={ getTasksFromDb }
-        >
-          Todas as Tarefas
-        </button>
-        <button
-          type="button"
-          id="filterBtn"
-          onClick={ onlyConcludedTasks }
-        >
-          Apenas concluídas
-        </button>
-        <button
-          type="button"
-          id="filterBtn"
-          onClick={ onlyNotConcludedTasks }
-        >
-          Tarefas Pendentes
-        </button>
-      </div>
+      <FilterButtons
+        onClick1={ getTasksFromDb }
+        onClick2={ onlyConcludedTasks }
+        onClick3={ onlyNotConcludedTasks }
+      />
 
-      <label htmlFor="addInput" className="addTask">
-        <input
-          data-testid="addTask-Input"
-          type="text"
-          name="addInput"
-          id="addInput"
-          onChange={ (event) => {
-            setInput(event.target.value);
-          } }
-        />
-        <button
-          data-testid="addTask-Button"
-          type="button"
-          id="AddButon"
-          onClick={ createTask }
-        >
-          Adicionar Tarefa
-        </button>
-      </label>
+      <AddTask
+        onChange={ (event) => setInput(event.target.value) }
+        onClick={ createTask }
+      />
+
     </main>
   );
 }

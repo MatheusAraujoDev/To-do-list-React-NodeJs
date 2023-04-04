@@ -4,6 +4,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import EditButton from './components/EditButton';
 import DeleteTaskButton from './components/DeleteTaskButton';
 import AddTask from './components/AddTask';
@@ -66,12 +67,29 @@ function App() {
   };
 
   const deleteTask = (_id) => {
-    axios.delete('http://localhost:3001/delete', {
-      data: {
-        _id,
-      },
-    }).then(() => {
-      setTask(task.filter((item) => item._id !== _id));
+    Swal.fire({
+      title: 'Tem certeza que deseja excluir essa tarefa?',
+      text: 'A tarefa será excluída permanentemente!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Remover',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete('http://localhost:3001/delete', {
+          data: {
+            _id,
+          },
+        }).then(() => {
+          setTask(task.filter((item) => item._id !== _id));
+          Swal.fire(
+          'Deletada!',
+          'Tarefa deletada com sucesso!',
+          'success',
+          );
+        });
+      }
     });
   };
 

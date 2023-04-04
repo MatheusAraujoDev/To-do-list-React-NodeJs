@@ -20,6 +20,7 @@ export default function AddTask({ onChange, onClick }) {
         onClick={ onClick }
         startIcon={ <AddCircleOutlineIcon /> }
         variant="contained"
+        size="small"
         style={ { fontSize: 'medium', fontWeight: 'bold' } }
       >
         Criar Tarefa

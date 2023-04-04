@@ -55,14 +55,14 @@ td {
 .addTask input {
   width: 300px;
   margin-right: 3px;
-  padding: 8px
+  padding: 10px
 }
 
 .filter-buttons {
   margin-top: 60px;
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
 }
 
 .markItem {
@@ -77,9 +77,9 @@ input {
   background-color:cornflowerblue;
   border-radius: 5px;
   border: 1px solid black;
-  font-size: 14px;
+  font-size: medium;
   font-weight: bold;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
-  padding: 6px;
+  padding: 8px;
   margin-right: 15px;
 }

@@ -1,14 +1,12 @@
 body {
-  background-color:#4E6766;
+  background-color:#1C1D1F;
 }
 
 h1 {
-  background: rgb(15,9,121);
-  background: linear-gradient(90deg, rgb(57, 50, 184) 13%, rgba(3,146,211,1) 68%, rgba(0,231,255,1) 92%);
-  color: Black;
+  color:ghostwhite;
   font-style: italic;
-  font-family: monospace;
-  font-size: 35px;
+  font-family: Alkatra, monospace;
+  font-size:xxx-large;
   margin: auto;
   text-align:center;
   width: 60%;
@@ -19,6 +17,12 @@ main {
   margin-top: 100px;
 }
 
+.notFound {
+  color: orange;
+  text-align:center;
+  font-size: x-large;
+}
+
 .center {
   margin: 0 auto;
   text-align:center;
@@ -27,7 +31,8 @@ main {
 table {
   margin:0 auto;
   text-align:center;
-  width: 60%
+  width: 60%;
+  height: 5vh;
 }
 
 th {
@@ -50,6 +55,7 @@ td {
 .addTask input {
   width: 300px;
   margin-right: 3px;
+  padding: 8px
 }
 
 .filter-buttons {

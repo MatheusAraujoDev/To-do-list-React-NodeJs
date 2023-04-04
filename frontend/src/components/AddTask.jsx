@@ -18,9 +18,9 @@ export default function AddTask({ onChange, onClick }) {
         data-testid="addTask-Button"
         type="button"
         onClick={ onClick }
-        size="small"
         startIcon={ <AddCircleOutlineIcon /> }
         variant="contained"
+        style={ { fontSize: 'medium', fontWeight: 'bold' } }
       >
         Criar Tarefa
       </Button>

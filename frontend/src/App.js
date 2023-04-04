@@ -1,3 +1,6 @@
+/* eslint-disable indent */
+/* eslint-disable react/jsx-closing-tag-location */
+// eslint-disable-next-line react/jsx-indent-props
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -86,54 +89,56 @@ function App() {
 
   return (
     <main>
-      <h1>To Do List</h1>
+      <h1>ToDo List</h1>
 
-      <table>
-        <thead>
-          <tr data-testid="table-row">
-            <th>Status</th>
-            <th>Nome da Tarefa</th>
-            <th>Opções</th>
-          </tr>
-        </thead>
-        <tbody>
-          {task.map((item) => (
-            <tr key={ item._id }>
-              <td>
-                <input
-                  type="checkbox"
-                  id={ `checkbox${item._id}` }
-                  onChange={ () => { markTask(item._id, item.task); } }
-                  checked={ item.check }
-                />
-
-              </td>
-              <td>
-                <h2
-                  id={ item._id }
-                  className={ item.check && 'markItem' }
-                >
-                  {item.task}
-                </h2>
-              </td>
-              <td>
-                <EditButton
-                  onClick={ () => {
-                    const taskNewValue = editInput(item.task); // fica o valor da nova tarefa
-                    updateTask(item._id, taskNewValue, item.check);
-                  } }
-                />
-
-                <DeleteTaskButton
-                  onClick={ () => {
-                    deleteTask(item._id);
-                  } }
-                />
-              </td>
+      { task.length < 1
+        ? <p className="notFound">Nenhuma tarefa encontrada...</p>
+        : (<table>
+          <thead>
+            <tr data-testid="table-row">
+              <th>Status</th>
+              <th>Nome da Tarefa</th>
+              <th>Opções</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {task.map((item) => (
+              <tr key={ item._id }>
+                <td>
+                  <input
+                    type="checkbox"
+                    id={ `checkbox${item._id}` }
+                    onChange={ () => { markTask(item._id, item.task); } }
+                    checked={ item.check }
+                  />
+
+                </td>
+                <td>
+                  <h2
+                    id={ item._id }
+                    className={ item.check && 'markItem' }
+                  >
+                    {item.task}
+                  </h2>
+                </td>
+                <td>
+                  <EditButton
+                    onClick={ () => {
+                      const taskNewValue = editInput(item.task); // fica o valor da nova tarefa
+                      updateTask(item._id, taskNewValue, item.check);
+                    } }
+                  />
+
+                  <DeleteTaskButton
+                    onClick={ () => {
+                      deleteTask(item._id);
+                    } }
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>)}
 
       <FilterButtons
         onClick1={ getTasksFromDb }

@@ -1,18 +1,15 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function EditButton({ onClick }) {
   return (
-    <Button
-      color="secondary"
+    <EditIcon
       type="button"
       onClick={ onClick }
       size="small"
-      variant="text"
-    >
-      Editar
-    </Button>
+      style={ { verticalAlign: 'middle' } }
+    />
   );
 }
 

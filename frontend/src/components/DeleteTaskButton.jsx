@@ -9,6 +9,7 @@ export default function DeleteTaskButton({ onClick }) {
       type="button"
       size="small"
       onClick={ onClick }
+      style={ { color: 'black', verticalAlign: 'middle' } }
     >
       <DeleteIcon />
     </IconButton>

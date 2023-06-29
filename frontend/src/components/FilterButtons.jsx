@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 export default function FilterButtons({ onClick1, onClick2, onClick3 }) {
   return (
@@ -8,6 +8,7 @@ export default function FilterButtons({ onClick1, onClick2, onClick3 }) {
         type="button"
         id="filterBtn"
         onClick={ onClick1 }
+        className="filter-button"
       >
         Todas as Tarefas
       </button>
@@ -15,6 +16,7 @@ export default function FilterButtons({ onClick1, onClick2, onClick3 }) {
         type="button"
         id="filterBtn"
         onClick={ onClick2 }
+        className="filter-button"
       >
         Apenas concluídas
       </button>
@@ -22,6 +24,7 @@ export default function FilterButtons({ onClick1, onClick2, onClick3 }) {
         type="button"
         id="filterBtn"
         onClick={ onClick3 }
+        className="filter-button"
       >
         Tarefas Pendentes
       </button>

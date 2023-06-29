@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import EditIcon from '@mui/icons-material/Edit';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 export default function EditButton({ onClick }) {
   return (
@@ -8,7 +8,7 @@ export default function EditButton({ onClick }) {
       type="button"
       onClick={ onClick }
       size="small"
-      style={ { verticalAlign: 'middle' } }
+      style={ { verticalAlign: 'middle', cursor: 'pointer' } }
     />
   );
 }

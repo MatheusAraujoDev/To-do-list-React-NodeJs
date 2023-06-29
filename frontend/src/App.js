@@ -1,13 +1,13 @@
 /* eslint-disable indent */
 /* eslint-disable react/jsx-closing-tag-location */
 // eslint-disable-next-line react/jsx-indent-props
-import './App.css';
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import EditButton from './components/EditButton';
-import DeleteTaskButton from './components/DeleteTaskButton';
+import './App.css';
 import AddTask from './components/AddTask';
+import DeleteTaskButton from './components/DeleteTaskButton';
+import EditButton from './components/EditButton';
 import FilterButtons from './components/FilterButtons';
 
 function App() {
@@ -54,6 +54,10 @@ function App() {
   };
 
   const createTask = () => {
+    if (!input) {
+      return;
+    }
+
     axios.post('http://localhost:3001/create', {
       task: input,
       check: false,
@@ -75,6 +79,7 @@ function App() {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Remover',
+      cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete('http://localhost:3001/delete', {
@@ -126,6 +131,7 @@ function App() {
                   <input
                     type="checkbox"
                     id={ `checkbox${item._id}` }
+                    style={ { width: '15px', height: '15px', cursor: 'pointer' } }
                     onChange={ () => { markTask(item._id, item.task); } }
                     checked={ item.check }
                   />

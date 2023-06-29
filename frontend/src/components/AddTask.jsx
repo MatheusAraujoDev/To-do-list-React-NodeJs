@@ -1,7 +1,7 @@
-import React from 'react';
-import Button from '@mui/material/Button';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 export default function AddTask({ onChange, onClick }) {
   return (
@@ -11,6 +11,7 @@ export default function AddTask({ onChange, onClick }) {
         type="text"
         name="addInput"
         id="addInput"
+        style={ { borderRadius: '8px' } }
         onChange={ onChange }
       />
       <Button
@@ -21,7 +22,7 @@ export default function AddTask({ onChange, onClick }) {
         startIcon={ <AddCircleOutlineIcon /> }
         variant="contained"
         size="small"
-        style={ { fontSize: 'medium', fontWeight: 'bold' } }
+        style={ { fontSize: 'medium' } }
       >
         Criar Tarefa
       </Button>
